@@ -15,11 +15,11 @@ class MyPanel(wx.Panel):
                                      bitmap=bitmap,
                                      size=bitmap.GetSize()
                                      )
-        image.SetBackgroundColour('white')
+        self.image.SetBackgroundColour('white')
         button = wx.Button(self, -1, 'Open_File')
 
-        box_sizer = wx.BuxSizer(wx.VERTICAL)
-        box_sizer.Add(image, 1, wx.EXPAND)
+        box_sizer = wx.BoxSizer(wx.VERTICAL)
+        box_sizer.Add(self.image, 1, wx.EXPAND)
         box_sizer.Add(button, 0, wx.ALIGN_CENTER | wx.ALL, 10)
         self.SetSizer(box_sizer)
 
@@ -30,7 +30,7 @@ class MyPanel(wx.Panel):
                            wildcard='PNG files (*.png)|*.png',
                            style=wx.FD_OPEN) as dialog:
             if dialog.ShowModal() == wx.ID_OK:
-                bitmap = wx.Image(dialog.GetPath()[0]).ConvertToBitmap()
+                bitmap = wx.Image(dialog.GetPaths()[0]).ConvertToBitmap()
                 self.image.SetBitmap(bitmap)
                 self.Layout()
 
